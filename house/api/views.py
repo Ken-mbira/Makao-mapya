@@ -1,11 +1,15 @@
-from rest_framework import generics
+from rest_framework import generics,permissions
 
 from house.models import *
 from house.api.serializers import *
 
 class HouseList(generics.ListCreateAPIView):
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = House.objects.all()
     serializer_class = HouseSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(owner = self.request.user)
 
 class HouseDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = House.objects.all()

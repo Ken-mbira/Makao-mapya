@@ -20,9 +20,10 @@ class CitySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class HouseSerializer(serializers.ModelSerializer):
+    owner = serializers.ReadOnlyField(source= 'owner.username')
     class Meta:
         owner = AccountSerializer(many=True)
         type =  CategorySerializer(many=True)
         location = CitySerializer(many=True)
         model = House
-        fields = '__all__'
+        exclude = ['owner']

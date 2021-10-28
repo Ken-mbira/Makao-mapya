@@ -15,7 +15,7 @@ class City(models.Model):
     name = models.CharField(max_length=200)
 
 class House(models.Model):
-    owner = models.ForeignKey(Account,on_delete=models.CASCADE)
+    owner = models.ForeignKey(Account,on_delete=models.CASCADE,related_name="houses")
     name = models.CharField(max_length=200,unique=True)
     description = models.TextField()
     location = models.ForeignKey(City,on_delete=models.RESTRICT)
