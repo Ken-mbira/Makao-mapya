@@ -26,3 +26,7 @@ class CityList(generics.ListCreateAPIView):
 class CategoryList(generics.ListCreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+
+class ImageDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = HouseImage.objects.all()
+    serializer_class = ImageSerializer

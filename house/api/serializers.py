@@ -25,3 +25,8 @@ class HouseSerializer(serializers.ModelSerializer):
         owner = AccountSerializer(many=True,read_only=True)
         model = House
         fields = '__all__'
+
+class ImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HouseImage
+        fields = '__all__'
