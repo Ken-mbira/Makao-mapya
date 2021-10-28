@@ -7,12 +7,21 @@ from account.models import Account
 class Category(models.Model):
     name = models.CharField(max_length=200)
 
+    class Meta:
+        verbose_name_plural = 'Categories' 
+
 class Country(models.Model):
     name = models.CharField(max_length=200)
+
+    class Meta:
+        verbose_name_plural = 'Countries'
 
 class City(models.Model):
     country = models.ForeignKey(Country,on_delete=models.RESTRICT)
     name = models.CharField(max_length=200)
+
+    class Meta:
+        verbose_name_plural = 'Cities'
 
 class House(models.Model):
     owner = models.ForeignKey(Account,on_delete=models.CASCADE,related_name="houses")
@@ -25,3 +34,6 @@ class House(models.Model):
     bedrooms = models.IntegerField(validators = [MaxValueValidator(10),MinValueValidator(1)])
     bathrooms = models.IntegerField(validators = [MaxValueValidator(5),MinValueValidator(1)])
     garage = models.BooleanField()
+
+    class Meta:
+        verbose_name_plural = 'Houses'
