@@ -13,7 +13,7 @@ class CountrySerializer(serializers.ModelSerializer):
         model = Country
         fields = '__all__'
 
-class CitySerializer(serializers.HyperlinkedModelSerializer):
+class CitySerializer(serializers.ModelSerializer):
     class Meta:
         country = CountrySerializer(many=True)
         model = City
