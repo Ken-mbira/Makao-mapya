@@ -24,4 +24,5 @@ urlpatterns = [
 
     #api
     path('',include('account.api.urls')),
+    path('house/',include('house.api.urls')),
 ]
