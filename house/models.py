@@ -43,6 +43,7 @@ class House(models.Model):
     bedrooms = models.IntegerField(validators = [MaxValueValidator(10),MinValueValidator(1)])
     bathrooms = models.IntegerField(validators = [MaxValueValidator(5),MinValueValidator(1)])
     garage = models.BooleanField()
+    price = models.DecimalField(decimal_places=2,max_digits=10,null=True)
 
     class Meta:
         verbose_name_plural = 'Houses'
