@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MaxValueValidator,MinValueValidator
 
 from account.models import Account
 
@@ -21,6 +22,6 @@ class House(models.Model):
     type = models.ForeignKey(Category,on_delete=models.RESTRICT)
     date_added = models.DateTimeField(auto_now_add=True)
     is_available = models.BooleanField(default=True)
-    bedrooms = models.IntegerField()
-    bathrooms = models.IntegerField()
+    bedrooms = models.IntegerField(validators = [MaxValueValidator(10),MinValueValidator(1)])
+    bathrooms = models.IntegerField(validators = [MaxValueValidator(5),MinValueValidator(1)])
     garage = models.BooleanField()
