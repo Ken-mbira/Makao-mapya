@@ -13,7 +13,7 @@ class CountrySerializer(serializers.ModelSerializer):
         model = Country
         fields = '__all__'
 
-class CitySerializer(serializers.ModelSerializer):
+class CitySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         country = CountrySerializer(many=True)
         model = City
@@ -22,8 +22,6 @@ class CitySerializer(serializers.ModelSerializer):
 class HouseSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source= 'owner.username')
     class Meta:
-        owner = AccountSerializer(many=True)
-        type =  CategorySerializer(many=True)
-        location = CitySerializer(many=True)
+        owner = AccountSerializer(many=True,read_only=True)
         model = House
-        exclude = ['owner']
+        fields = '__all__'

@@ -10,11 +10,17 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = 'Categories' 
 
+    def __str__(self):
+        return self.name
+
 class Country(models.Model):
     name = models.CharField(max_length=200)
 
     class Meta:
         verbose_name_plural = 'Countries'
+
+    def __str__(self):
+        return self.name
 
 class City(models.Model):
     country = models.ForeignKey(Country,on_delete=models.RESTRICT)
@@ -22,6 +28,9 @@ class City(models.Model):
 
     class Meta:
         verbose_name_plural = 'Cities'
+
+    def __str__(self):
+        return self.name
 
 class House(models.Model):
     owner = models.ForeignKey(Account,on_delete=models.CASCADE,related_name="houses")
@@ -37,3 +46,16 @@ class House(models.Model):
 
     class Meta:
         verbose_name_plural = 'Houses'
+
+    def __str__(self):
+        return self.name
+
+class HouseImage(models.Model):
+    house = models.ForeignKey(House,on_delete=models.CASCADE)
+    image = models.ImageField(null=True,upload_to='houses/')
+
+    class Meta:
+        verbose_name_plural="HouseImages"
+    
+    def __str__(self):
+        return self.image + " | " +str(self.pk)
